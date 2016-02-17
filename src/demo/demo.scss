@@ -1,11 +1,25 @@
 .demo{
-  .demo-left{
+  background-color: #3e464c;
+  .demo-item{
+    text-decoration: none;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1;
+    display: block;
+    background-color: red;
     float: left;
-    width: 50%;
-  }
-  .demo-right{
-    float: right;
-    width: 50%;
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    margin: 5px;
+    &.red{
+      background-color: red;
+    }
+    &.blue{
+      background-color: blue;
+    }
   }
 }
 

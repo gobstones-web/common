@@ -8,5 +8,3 @@ Polymer
     firstIndex:
       type: Number
       
-  ready: ->
-    console.log 'dom-iterate-demo-second'
