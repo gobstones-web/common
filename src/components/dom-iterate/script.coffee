@@ -90,9 +90,9 @@ Polymer
     if @from <= @to
       #increment mode
       @includeLast and @_to += 1
-    else
+    else 
       #decrement mode
-      @includeLast and @_from -= 1
+      @includeLast and @_to -= 1
       
   _update: ->
     @_detachInstances()

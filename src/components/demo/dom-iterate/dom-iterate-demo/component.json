@@ -3,6 +3,7 @@
   "imports": [
     "../../dom-iterate.html",
     "dom-iterate-demo-first.html", 
-    "../../../../bower_components/iron-input/iron-input.html"
+    "../../../../bower_components/iron-input/iron-input.html",
+    "../../../../bower_components/paper-checkbox/paper-checkbox.html"
   ]
 }

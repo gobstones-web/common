@@ -131,7 +131,7 @@
         if (this.from <= this.to) {
           return this.includeLast && (this._to += 1);
         } else {
-          return this.includeLast && (this._from -= 1);
+          return this.includeLast && (this._to -= 1);
         }
       },
       _update: function() {

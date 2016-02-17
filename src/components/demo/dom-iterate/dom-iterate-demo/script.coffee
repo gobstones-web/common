@@ -18,7 +18,3 @@ Polymer
     secondLevelToIndex:
       type: Number
       value: 2
-      #observer: '_secondLevelToIndexChange'
-      
-  #_secondLevelToIndexChange: ->
-  #  console.log '_secondLevelToIndexChange'

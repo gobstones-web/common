@@ -1,6 +1,7 @@
 <link rel="import" href="../../dom-iterate.html">
 <link rel="import" href="dom-iterate-demo-first.html">
 <link rel="import" href="../../../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../../../bower_components/paper-checkbox/paper-checkbox.html">
 <dom-module id="dom-iterate-demo">
   <template>
     <style>
@@ -23,6 +24,14 @@
         background-color: green;
       }
 
+      .alert-box {
+        display: inline-block;
+        width: auto;
+        background-color: #FA3;
+        padding: 5px;
+        margin: 5px 0 5px 0;
+      }
+
     </style>
 
     <div>
@@ -30,13 +39,12 @@
       <input type="text" is="iron-input" bind-value="{{firstLevelFromIndex}}" /><br/>
       <span>firstLevelToIndex: </span><br/>
       <input type="text" is="iron-input" bind-value="{{firstLevelToIndex}}" /><br/>
-      <span>second level 'from' index get hardcode '0' as example</span><br/>
+      <span class="alert-box">second level 'from' index get hardcode '0' as example</span><br/>
       <span>secondLevelToIndex: </span><br/>
       <input type="text" is="iron-input" bind-value="{{secondLevelToIndex}}" /><br/>
-      
-      Include last item in first level: <input type="checkbox" checked="{{firstLevelIncludeLast}}"><br/>
-      <template is="dom-if" if="{{firstLevelIncludeLast}}">greater</template>
-      <template is="dom-if" if="{{!firstLevelIncludeLast}}">less</template>
+      <paper-checkbox checked="{{firstLevelIncludeLast}}">Include last item in first level</paper-checkbox><br/>
+      <template is="dom-if" if="{{firstLevelIncludeLast}}">last index included</template>
+      <template is="dom-if" if="{{!firstLevelIncludeLast}}">last index excluded</template>
       <br/>
       <dom-iterate-demo-first 
         first-level-from-index="{{firstLevelFromIndex}}"
