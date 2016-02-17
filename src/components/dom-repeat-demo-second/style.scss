@@ -1,0 +1,19 @@
+
+.fist-level,
+.second-level{
+  float: left;
+  display: block;
+  color: white;
+  clear: both;
+  padding: 3px;
+  margin: 2px;
+}
+
+.fist-level{
+  background-color: red;
+}
+
+.second-level{
+  margin-left: 10px;
+  background-color: green;
+}

@@ -45,19 +45,8 @@
           return this.templatize(this);
         }
       },
-
-      /*  
-      update_annotations: ->
-        console.log @
-        console.log 'change_index'
-        console.log @_notes
-        @_flushTemplates()
-        @async ->
-          for instance in @_instances
-            console.log instance._notes
-          @_debounceTemplate ->
-       */
       render: function() {
+        console.log('render');
         return this._flushTemplates();
       },
       attached: function() {
@@ -89,20 +78,12 @@
         return instance;
       },
       _attachInstances: function() {
-        var index, instance, model, prop, templatized, _i, _ref, _ref1, _results;
+        var index, instance, model, _i, _ref, _ref1, _results;
         _results = [];
         for (index = _i = _ref = this._from, _ref1 = this._to; _ref <= _ref1 ? _i < _ref1 : _i > _ref1; index = _ref <= _ref1 ? ++_i : --_i) {
           model = {};
           model[this.indexAs] = index;
-          if (this._parentProps) {
-            templatized = this._templatized;
-            for (prop in this._parentProps) {
-              if (!model.hasOwnProperty(prop)) {
-                model[prop] = templatized[this._parentPropPrefix + prop];
-              }
-            }
-          }
-          instance = new this.ctor(model, this);
+          instance = this.stamp(model);
           this._insertBefore(instance);
           _results.push(this._instances.push(instance));
         }
@@ -141,10 +122,8 @@
       _getParentElement: function() {
         return Polymer.dom(Polymer.dom(this).parentNode);
       },
-      _changed: function() {
-        return this._debounceTemplate(function() {
-          return this._update();
-        });
+      _changed: function(a, b, c) {
+        return this._debounceTemplate(this._update);
       },
       _calculate_points: function() {
         this._from = parseInt(this.from);
@@ -159,6 +138,34 @@
         this._detachInstances();
         this._calculate_points();
         return this._attachInstances();
+      },
+      _forwardParentProp: function(prop, value) {
+        var instance, instances, _i, _len, _results;
+        instances = this._instances;
+        _results = [];
+        for (_i = 0, _len = instances.length; _i < _len; _i++) {
+          instance = instances[_i];
+          if (!instance.isPlaceholder) {
+            _results.push(instance.__setProperty(prop, value, true));
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      },
+      _forwardParentPath: function(path, value) {
+        var instance, instances, _i, _len, _results;
+        instances = this._instances;
+        _results = [];
+        for (_i = 0, _len = instances.length; _i < _len; _i++) {
+          instance = instances[_i];
+          if (!instance.isPlaceholder) {
+            _results.push(instance._notifyPath(path, value, true));
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
       }
     });
 

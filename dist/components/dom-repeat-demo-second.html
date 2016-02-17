@@ -1,4 +1,4 @@
-<dom-module id="dom-iterate-demo-second">
+<dom-module id="dom-repeat-demo-second">
   <template>
     <style>
       .fist-level,
@@ -23,9 +23,8 @@
     </style>
 
     <template id="second-level"
-      is="dom-iterate"
-      from="0" 
-      to="{{secondLevelToIndex}}"
+      is="dom-repeat"
+      items="{{first_items}}"
       index-as="secondIndex">
       <div class="second-level">
         <span>second level: </span>
@@ -38,18 +37,27 @@
   </template>
   <script>
     Polymer({
-      is: 'dom-iterate-demo-second',
+      is: 'dom-repeat-demo-second',
       properties: {
         secondLevelToIndex: {
           type: Number,
-          value: 2
+          value: 2,
+          observer: 'mk_array'
         },
         firstIndex: {
           type: Number
         }
       },
-      ready: function() {
-        return console.log('dom-iterate-demo-second');
+      mk_array: function(count) {
+        var item;
+        return this.first_items = (function() {
+          var _i, _ref, _results;
+          _results = [];
+          for (item = _i = 0, _ref = this.secondLevelToIndex; 0 <= _ref ? _i < _ref : _i > _ref; item = 0 <= _ref ? ++_i : --_i) {
+            _results.push(item);
+          }
+          return _results;
+        }).call(this);
       }
     });
 

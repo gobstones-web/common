@@ -11,11 +11,11 @@
   <template is="dom-if" if="{{firstLevelIncludeLast}}">greater</template>
   <template is="dom-if" if="{{!firstLevelIncludeLast}}">less</template>
   <br/>
-  <dom-iterate-demo-first 
+  <dom-repeat-demo-first 
     first-level-from-index="{{firstLevelFromIndex}}"
     first-level-to-index="{{firstLevelToIndex}}"
     first-level-include-last="{{firstLevelIncludeLast}}"
     second-level-to-index="{{secondLevelToIndex}}">
-  </dom-iterate-demo-first>
+  </dom-repeat-demo-first>
   <br/>
 </div>

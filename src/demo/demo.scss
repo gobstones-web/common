@@ -1,6 +1,11 @@
 .demo{
-  
-  
-  
+  .demo-left{
+    float: left;
+    width: 50%;
+  }
+  .demo-right{
+    float: right;
+    width: 50%;
+  }
 }
 

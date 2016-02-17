@@ -16,9 +16,6 @@ Polymer
     indexAs:
       type: String
       value: 'index'
-    #observe:
-    #  type: String
-    #  value: ''
       
   observers: [
       '_changed(from, to, includeLast)'
@@ -38,25 +35,9 @@ Polymer
       __key__: true
     @_instanceProps[@indexAs] = true;
     unless @ctor then @templatize(@)
-    #observables = @observe.trim().split(/\s*,\s*/)
-    #for observable in observables
-    #  if observable isnt ''
-    #    #console.log @_parentPropPrefix + observable
-    #    @_addObserverEffect (@_parentPropPrefix + observable), 'update_annotations'
   
-  ###  
-  update_annotations: ->
-    console.log @
-    console.log 'change_index'
-    console.log @_notes
-    @_flushTemplates()
-    @async ->
-      for instance in @_instances
-        console.log instance._notes
-      @_debounceTemplate ->
-  ###  
-    
   render: ->
+    console.log 'render'
     @_flushTemplates()
 
   attached: ->
@@ -78,19 +59,7 @@ Polymer
     for index in [@_from ... @_to]
       model = {}
       model[@indexAs] = index
-      #stamp deletes model attributes value
-      #does not use 'self.stamp(model)'
-      if @_parentProps
-        templatized = @_templatized;
-        for prop of @_parentProps
-          #this 'if' fix self attribute override problem
-          if not model.hasOwnProperty prop
-            model[prop] = templatized[@_parentPropPrefix + prop];
-          #else
-          #  console.log 'own: ' + model[prop]
-          #  console.log 'templatized: ' + templatized[@_parentPropPrefix + prop]
-          #  console.log 'skiping ' + prop
-      instance = new @ctor(model, @)
+      instance = @stamp model
       @_insertBefore instance
       @_instances.push instance
         
@@ -112,9 +81,8 @@ Polymer
   _getParentElement: ->
     Polymer.dom(Polymer.dom(@).parentNode)
   
-  _changed: ->
-    @_debounceTemplate ->
-      @_update()
+  _changed: (a, b, c)->
+    @_debounceTemplate @_update
   
   _calculate_points: ->
     @_from = parseInt @from
@@ -131,7 +99,17 @@ Polymer
     @_calculate_points()
     @_attachInstances()
   
-  
+  _forwardParentProp: (prop, value) ->
+    instances = @_instances
+    for instance in instances
+      unless instance.isPlaceholder
+        instance.__setProperty prop, value, true
+    
+  _forwardParentPath: (path, value) ->
+    instances = @_instances
+    for instance in instances
+      unless instance.isPlaceholder
+        instance._notifyPath path, value, true
 
 
 

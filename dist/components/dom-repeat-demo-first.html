@@ -1,5 +1,5 @@
-<link rel="import" href="dom-iterate-demo-second.html">
-<dom-module id="dom-iterate-demo-first">
+<link rel="import" href="dom-repeat-demo-second.html">
+<dom-module id="dom-repeat-demo-first">
   <template>
     <style>
       .fist-level,
@@ -24,39 +24,50 @@
     </style>
 
     <template id="first-level"
-      is="dom-iterate"
-      from="{{firstLevelFromIndex}}"
-      to="{{firstLevelToIndex}}"
-      include-last="{{firstLevelIncludeLast}}"
+      is="dom-repeat"
+      items="{{first_items}}"
       index-as="firstIndex">
       <div class="fist-level">
         <span><span>{{firstIndex}}</span> first level title</span>
       </div>
-      <dom-iterate-demo-second
+      <dom-repeat-demo-second
         first-index="{{firstIndex}}"
         second-level-to-index="{{secondLevelToIndex}}">
-      </dom-iterate-demo-second>
+      </dom-repeat-demo-second>
     </template>
 
   </template>
   <script>
     Polymer({
-      is: 'dom-iterate-demo-first',
+      is: 'dom-repeat-demo-first',
       properties: {
         firstLevelFromIndex: {
           type: Number,
-          value: 0
+          value: 0,
+          observer: 'mk_array'
         },
         firstLevelToIndex: {
           type: Number,
-          value: 3
+          value: 3,
+          observer: 'mk_array'
         },
         firstLevelIncludeLast: {
           type: Boolean,
           value: false
         }
       },
-      ready: function() {}
+      ready: function() {},
+      mk_array: function(count) {
+        var item;
+        return this.first_items = (function() {
+          var _i, _ref, _ref1, _results;
+          _results = [];
+          for (item = _i = _ref = this.firstLevelFromIndex, _ref1 = this.firstLevelToIndex; _ref <= _ref1 ? _i < _ref1 : _i > _ref1; item = _ref <= _ref1 ? ++_i : --_i) {
+            _results.push(item);
+          }
+          return _results;
+        }).call(this);
+      }
     });
 
   </script>
