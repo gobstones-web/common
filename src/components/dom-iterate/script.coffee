@@ -1,8 +1,5 @@
 Polymer
   is: '#GRUNT_COMPONENT_NAME'
-
-Polymer
-  is: 'dom-iterate'
   extends: 'template'
   _template: null
   
@@ -13,16 +10,19 @@ Polymer
     to: 
       type: Number
       value: 0
-    includeLast: 
+    includeLast:
       type: Boolean
       value: true
     indexAs:
       type: String
       value: 'index'
+    #observe:
+    #  type: String
+    #  value: ''
       
   observers: [
       '_changed(from, to, includeLast)'
-    ],
+    ]
     
   behaviors: [
       Polymer.Templatizer
@@ -38,18 +38,35 @@ Polymer
       __key__: true
     @_instanceProps[@indexAs] = true;
     unless @ctor then @templatize(@)
+    #observables = @observe.trim().split(/\s*,\s*/)
+    #for observable in observables
+    #  if observable isnt ''
+    #    #console.log @_parentPropPrefix + observable
+    #    @_addObserverEffect (@_parentPropPrefix + observable), 'update_annotations'
+  
+  ###  
+  update_annotations: ->
+    console.log @
+    console.log 'change_index'
+    console.log @_notes
+    @_flushTemplates()
+    @async ->
+      for instance in @_instances
+        console.log instance._notes
+      @_debounceTemplate ->
+  ###  
     
   render: ->
     @_flushTemplates()
 
   attached: ->
-    for instance of @_instances
+    for instance in @_instances
       @_insertBefore instance
 
   detached: ->
     for instance in @_instances
       @_detachInstance(instance)
-  
+      
   _insertBefore: (instance, target)->
     target = target or {}
     parent = target.parent or @_getParentElement()
@@ -69,6 +86,10 @@ Polymer
           #this 'if' fix self attribute override problem
           if not model.hasOwnProperty prop
             model[prop] = templatized[@_parentPropPrefix + prop];
+          #else
+          #  console.log 'own: ' + model[prop]
+          #  console.log 'templatized: ' + templatized[@_parentPropPrefix + prop]
+          #  console.log 'skiping ' + prop
       instance = new @ctor(model, @)
       @_insertBefore instance
       @_instances.push instance
@@ -96,14 +117,14 @@ Polymer
       @_update()
   
   _calculate_points: ->
-    @_from = @from
-    @_to   = @to
+    @_from = parseInt @from
+    @_to   = parseInt @to
     if @from <= @to
       #increment mode
-      @includeLast and @_from -= 1
+      @includeLast and @_to += 1
     else
       #decrement mode
-      @includeLast and @_to += 1
+      @includeLast and @_from -= 1
       
   _update: ->
     @_detachInstances()

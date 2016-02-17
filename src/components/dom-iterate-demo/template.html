@@ -1,0 +1,21 @@
+<div>
+  <span>firstLevelFromIndex: </span><br/>
+  <input type="text" is="iron-input" bind-value="{{firstLevelFromIndex}}" /><br/>
+  <span>firstLevelToIndex: </span><br/>
+  <input type="text" is="iron-input" bind-value="{{firstLevelToIndex}}" /><br/>
+  <span>second level 'from' index get hardcode '2' as example</span><br/>
+  <span>secondLevelToIndex: </span><br/>
+  <input type="text" is="iron-input" bind-value="{{secondLevelToIndex}}" /><br/>
+  
+  Include last item in first level: <input type="checkbox" checked="{{firstLevelIncludeLast}}"><br/>
+  <template is="dom-if" if="{{is_greater()}}">greater</template>
+  <template is="dom-if" if="{{!is_greater()}}">less</template>
+  <br/>
+  <dom-iterate-demo-first 
+    first-level-from-index="{{firstLevelFromIndex}}"
+    first-level-to-index="{{firstLevelToIndex}}"
+    first-level-include-last="{{firstLevelIncludeLast}}"
+    second-level-to-index="{{secondLevelToIndex}}">
+  </dom-iterate-demo-first>
+  <br/>
+</div>

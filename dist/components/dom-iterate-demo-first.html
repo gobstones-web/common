@@ -1,0 +1,88 @@
+<link rel="import" href="dom-iterate-demo-second.html">
+<dom-module id="dom-iterate-demo-first">
+  <template>
+    <style>
+      .fist-level,
+      .second-level {
+        float: left;
+        display: block;
+        color: white;
+        clear: both;
+        padding: 3px;
+        margin: 2px;
+      }
+
+      .fist-level {
+        background-color: red;
+      }
+
+      .second-level {
+        margin-left: 10px;
+        background-color: green;
+      }
+
+    </style>
+
+    <template id="first-level"
+      is="dom-repeat"
+      from="{{firstLevelFromIndex}}"
+      to="{{firstLevelToIndex}}"
+      items="{{items}}"
+      include-last="{{firstLevelIncludeLast}}"
+      index-as="myIndex">
+      <div class="fist-level">
+        <span><span>{{myIndex}}</span> first level title</span>
+      </div>
+      <dom-iterate-demo-second
+        second-level-to-index="{{secondLevelToIndex}}">
+      </dom-iterate-demo-second>
+    </template>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'dom-iterate-demo-first',
+      properties: {
+        items: {
+          type: Array,
+          value: [1, 2, 3, 4]
+        },
+        firstLevelFromIndex: {
+          type: Number,
+          value: 0,
+          observer: 'mk_array'
+        },
+        firstLevelToIndex: {
+          type: Number,
+          value: 3,
+          observer: 'mk_array'
+        },
+        firstLevelIncludeLast: {
+          type: Boolean,
+          value: false
+        },
+        secondLevelToIndex: {
+          type: Number,
+          value: 2,
+          notify: true
+        }
+      },
+      ready: function() {
+        return console.log(this);
+      },
+      mk_array: function(count) {
+        var item;
+        this.items = (function() {
+          var _i, _ref, _ref1, _results;
+          _results = [];
+          for (item = _i = _ref = this.firstLevelFromIndex, _ref1 = this.firstLevelToIndex; _ref <= _ref1 ? _i < _ref1 : _i > _ref1; item = _ref <= _ref1 ? ++_i : --_i) {
+            _results.push(item);
+          }
+          return _results;
+        }).call(this);
+        return console.log(this.items);
+      }
+    });
+
+  </script>
+</dom-module>

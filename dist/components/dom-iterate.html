@@ -1,4 +1,4 @@
-<dom-module id="gs-common">
+<dom-module id="dom-iterate">
   <template>
     <style>
       
@@ -7,10 +7,6 @@
 
   </template>
   <script>
-    Polymer({
-      is: 'gs-common'
-    });
-
     Polymer({
       is: 'dom-iterate',
       "extends": 'template',
@@ -49,13 +45,27 @@
           return this.templatize(this);
         }
       },
+
+      /*  
+      update_annotations: ->
+        console.log @
+        console.log 'change_index'
+        console.log @_notes
+        @_flushTemplates()
+        @async ->
+          for instance in @_instances
+            console.log instance._notes
+          @_debounceTemplate ->
+       */
       render: function() {
         return this._flushTemplates();
       },
       attached: function() {
-        var instance, _results;
+        var instance, _i, _len, _ref, _results;
+        _ref = this._instances;
         _results = [];
-        for (instance in this._instances) {
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          instance = _ref[_i];
           _results.push(this._insertBefore(instance));
         }
         return _results;
@@ -137,12 +147,12 @@
         });
       },
       _calculate_points: function() {
-        this._from = this.from;
-        this._to = this.to;
+        this._from = parseInt(this.from);
+        this._to = parseInt(this.to);
         if (this.from <= this.to) {
-          return this.includeLast && (this._from -= 1);
-        } else {
           return this.includeLast && (this._to += 1);
+        } else {
+          return this.includeLast && (this._from -= 1);
         }
       },
       _update: function() {
