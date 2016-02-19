@@ -19,7 +19,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {
+  "devDependencies": {
     "polymer": "Polymer/polymer#^1.2.0",
     "iron-input": "polymerelements/iron-input#~1.0.8",
     "iron-checked-element-behavior": "polymerelements/iron-checked-element-behavior#~1.0.4",
