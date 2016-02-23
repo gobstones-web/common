@@ -1,10 +1,10 @@
 {
-  "name": "tablero",
-  "version": "0.0.0",
+  "name": "gs-common",
+  "version": "0.0.1",
   "authors": [
     "alejandrocastrounqui <alejandrocastrounqui@gmail.com>"
   ],
-  "description": "Gobstones grid Polymer component (aka: tablero)",
+  "description": "Gobstones Polymer common components",
   "main": "dist/index.html",
   "keywords": [
     "polymer",
@@ -15,7 +15,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "staging/bower_components",
+    "bower_components",
     "test",
     "tests"
   ],

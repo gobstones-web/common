@@ -1,6 +1,6 @@
 {
-  "name": "tablero",
-  "version": "0.0.0",
+  "name": "gs-common",
+  "version": "0.0.1",
   "dependencies": {
   },
   "devDependencies": {

@@ -2,6 +2,6 @@
   "name": "dom-repeat-demo",
   "imports": [
     "dom-repeat-demo-first.html", 
-    "../../../../bower_components/iron-input/iron-input.html"
+    "../../../../../iron-input/iron-input.html"
   ]
 }
