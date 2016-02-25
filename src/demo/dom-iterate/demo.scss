@@ -1,6 +1,7 @@
 *{
   margin: 0;
 }
+
 .demo{
   .demo-header{
     width: 96%;
@@ -17,6 +18,14 @@
     margin: 2%;
     float: right;
     width: 46%;
+  }
+}
+
+.github{
+  color: #AAF;
+  text-decoration: none;
+  &:hover{
+    color: #DDF;
   }
 }
 

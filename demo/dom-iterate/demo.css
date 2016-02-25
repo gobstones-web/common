@@ -18,3 +18,11 @@
   float: right;
   width: 46%;
 }
+
+.github {
+  color: #AAF;
+  text-decoration: none;
+}
+.github:hover {
+  color: #DDF;
+}

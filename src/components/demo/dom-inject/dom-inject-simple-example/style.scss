@@ -4,4 +4,19 @@
   height: 50px;
   background-color: red;
   display: block;
+  &.red{
+    background-color: red;
+  }
+  &.orange{
+    background-color: orange;
+  }
+  &.blue{
+    background-color: blue;
+  }
+  &.green{
+    background-color: green;
+  }
+  &.pink{
+    background-color: #F88;
+  }
 }

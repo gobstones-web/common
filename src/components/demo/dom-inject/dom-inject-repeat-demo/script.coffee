@@ -30,3 +30,6 @@ Polymer
     item = evnt.target.item
     index = @repeatElements.indexOf item
     @splice 'repeatElements', index, 1
+    
+
+
