@@ -1,6 +1,6 @@
 Polymer
   is: '#GRUNT_COMPONENT_NAME'
-  
+  extends: 'template'
   properties: 
     element: 
       type: Object
@@ -11,14 +11,13 @@ Polymer
   ready: ->
     @_update()
     
-    
   _reject: ()->
     if @_instance
-      Polymer.dom(@).parentNode.removeChild(@_instance)
+      Polymer.dom(Polymer.dom(@).parentNode).removeChild(@_instance)
     @_instance = undefined
     
   _inject: (element)->
-    Polymer.dom(@).parentNode.appendChild(element)
+    Polymer.dom(Polymer.dom(@).parentNode).insertBefore(@element, @)
     @_instance = @element
 
   _update: ->

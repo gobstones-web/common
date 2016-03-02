@@ -9,6 +9,7 @@
   <script>
     Polymer({
       is: 'dom-inject',
+      "extends": 'template',
       properties: {
         element: {
           type: Object,
@@ -21,12 +22,12 @@
       },
       _reject: function() {
         if (this._instance) {
-          Polymer.dom(this).parentNode.removeChild(this._instance);
+          Polymer.dom(Polymer.dom(this).parentNode).removeChild(this._instance);
         }
         return this._instance = void 0;
       },
       _inject: function(element) {
-        Polymer.dom(this).parentNode.appendChild(element);
+        Polymer.dom(Polymer.dom(this).parentNode).insertBefore(this.element, this);
         return this._instance = this.element;
       },
       _update: function() {
