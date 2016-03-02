@@ -2,7 +2,7 @@
 
 Componentes comunes para el desarrollo de la aplicacion Gobstones-web
 
-Version: 0.0.2
+Version: 0.0.3
 
 ### indice
 
