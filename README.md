@@ -2,7 +2,7 @@
 
 Componentes comunes para el desarrollo de la aplicacion Gobstones-web
 
-Version: 0.0.3
+Version: 0.0.4
 
 ### indice
 
@@ -78,7 +78,7 @@ Polymer({
 
 
 ```html
-<dom-inject element="myElement"></dom-inject>
+<template is="dom-inject" element="{{myElement}}"></template>
 ```
 
 * Soporta anidamiento de componentes.
@@ -117,7 +117,7 @@ Polymer({
 ```html
 <template is="dom-repeat" items="{{repeatElements}}" as="simpleElement" index-as="itemIndex">
   <div class="item">
-    <dom-inject element="{{simpleElement}}"></dom-inject>
+	<template is="dom-inject" element="{{simpleElement}}"></template>
   </div>
   <div class="close" on-click="removeItem" item="{{simpleElement}}">x</div>
 </template>
