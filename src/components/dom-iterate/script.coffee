@@ -11,7 +11,7 @@ Polymer
       type: Number
       value: 0
     includeLast:
-      type: Boolean
+      type: Object
       value: true
     indexAs:
       type: String
