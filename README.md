@@ -2,7 +2,7 @@
 
 Componentes comunes para el desarrollo de la aplicacion Gobstones-web
 
-Version: 0.0.4
+Version: 0.0.5
 
 ### indice
 
@@ -36,10 +36,9 @@ en cada iteración, dom-iterate injecta el índice sobre el *template*.
 `index-as`: nombre del modelo con el que se injecta el indice en el *template*. No soporta valores de modelo.
 
 `include-last`: Indica si se debera repetir el template con el ultimo indice del rango. 
-Es un valor booleano y por limitaciones de Polymer no se puede explicitar en el html, sino que debe tomar un valor de modelo
 
 ```html
-<template is="dom-iterate" from="0" to="7" include-last="includeLast">
+<template is="dom-iterate" from="0" to="7" include-last="{{includeLast}}">
   <span>iterateIndex: <span>{{index}}</span></span>
 </template>
 ```
